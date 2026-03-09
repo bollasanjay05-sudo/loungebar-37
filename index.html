@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Loungebar 37 · Burgers & Steaks</title>
+    <title>Lounge37 · burgers & steaks</title>
     <!-- Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;700&family=Roboto:wght@300;400;700&display=swap" rel="stylesheet">
     <!-- Font Awesome Icons -->
@@ -51,10 +51,14 @@
             text-transform: uppercase;
             letter-spacing: 2px;
         }
-
+        /* updated subtitle: lounge37 – burgers & steaks */
         .logo span {
             color: #fff;
             font-weight: 300;
+            font-size: 1rem;
+            display: block;
+            line-height: 1.2;
+            letter-spacing: 1px;
         }
 
         .nav-links {
@@ -87,7 +91,7 @@
             transform: scale(1.05);
         }
 
-        /* ----- BURGER CAROUSEL SECTION ----- */
+        /* ----- BURGER CAROUSEL SECTION (unchanged, keeps the lively 3D) ----- */
         .carousel-section {
             text-align: center;
             margin: 3rem 0 5rem;
@@ -110,7 +114,6 @@
             margin: 0.5rem auto 0;
         }
 
-        /* The spinning carousel */
         .carousel-container {
             perspective: 1500px;
             width: 100%;
@@ -131,13 +134,8 @@
             transition: animation-play-state 0.2s;
         }
 
-        .carousel:active {
-            cursor: grabbing;
-        }
-
-        .carousel:hover {
-            animation-play-state: paused;
-        }
+        .carousel:active { cursor: grabbing; }
+        .carousel:hover { animation-play-state: paused; }
 
         .carousel-item {
             position: absolute;
@@ -155,15 +153,14 @@
             justify-content: center;
             padding: 1.5rem;
             backface-visibility: hidden;
-            transition: transform 0.3s, box-shadow 0.3s;
         }
 
         .carousel-item img {
             width: 180px;
             height: 150px;
-            object-fit: contain;
+            object-fit: cover;
+            border-radius: 16px;
             filter: drop-shadow(0 10px 8px rgba(0,0,0,0.7));
-            border-radius: 12px;
         }
 
         .carousel-item h3 {
@@ -171,13 +168,8 @@
             margin: 1rem 0 0.5rem;
             font-size: 1.8rem;
         }
+        .carousel-item p { color: #ccc; }
 
-        .carousel-item p {
-            color: #ccc;
-            font-size: 1rem;
-        }
-
-        /* position each burger in 3d space */
         .item-1 { transform: rotateY(0deg) translateZ(400px); }
         .item-2 { transform: rotateY(60deg) translateZ(400px); }
         .item-3 { transform: rotateY(120deg) translateZ(400px); }
@@ -190,14 +182,12 @@
             to { transform: rotateY(360deg); }
         }
 
-        /* Manual control buttons */
         .carousel-controls {
             display: flex;
             justify-content: center;
             gap: 1rem;
             margin: 2rem 0 1rem;
         }
-
         .ctrl-btn {
             background: transparent;
             border: 2px solid #F39C12;
@@ -209,7 +199,6 @@
             cursor: pointer;
             transition: all 0.2s;
         }
-
         .ctrl-btn:hover {
             background: #F39C12;
             color: #0A0A0A;
@@ -225,7 +214,6 @@
             justify-content: center;
             align-items: center;
         }
-
         .modal-card {
             background: #1E1E1E;
             max-width: 800px;
@@ -236,69 +224,21 @@
             flex-wrap: wrap;
             padding: 2rem;
             gap: 2rem;
-            box-shadow: 0 20px 40px rgba(243, 156, 18, 0.4);
         }
-
-        .modal-left {
-            flex: 1 1 250px;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-        }
-
-        .modal-left img {
-            width: 100%;
-            max-width: 280px;
-            filter: drop-shadow(0 10px 10px #000);
-            border-radius: 20px;
-        }
-
-        .modal-right {
-            flex: 2 1 300px;
-        }
-
-        .modal-right h2 {
-            color: #F39C12;
-            font-size: 2.8rem;
-            line-height: 1.1;
-        }
-
-        .ingredients {
-            margin: 1.5rem 0;
-            padding: 1rem 0;
-            border-top: 1px solid #333;
-            border-bottom: 1px solid #333;
-        }
-
-        .ingredients p {
-            margin: 0.3rem 0;
-            color: #ddd;
-        }
-
-        .price {
-            font-size: 2.5rem;
-            font-weight: 700;
-            color: #F39C12;
-            margin-bottom: 1.5rem;
-        }
-
+        .modal-left { flex: 1 1 250px; display: flex; justify-content: center; align-items: center; }
+        .modal-left img { width: 100%; max-width: 280px; border-radius: 20px; }
+        .modal-right { flex: 2 1 300px; }
+        .modal-right h2 { color: #F39C12; font-size: 2.8rem; }
+        .ingredients { margin: 1.5rem 0; padding: 1rem 0; border-top: 1px solid #333; border-bottom: 1px solid #333; }
+        .ingredients p { margin: 0.3rem 0; color: #ddd; }
+        .price { font-size: 2.5rem; font-weight: 700; color: #F39C12; margin-bottom: 1.5rem; }
         .close-modal {
-            background: #F39C12;
-            border: none;
-            color: #0A0A0A;
-            font-weight: bold;
-            padding: 0.8rem 2.5rem;
-            border-radius: 50px;
-            font-size: 1.2rem;
-            cursor: pointer;
-            transition: background 0.2s;
+            background: #F39C12; border: none; color: #0A0A0A; font-weight: bold;
+            padding: 0.8rem 2.5rem; border-radius: 50px; font-size: 1.2rem; cursor: pointer;
         }
+        .close-modal:hover { background: #e08e0b; }
 
-        .close-modal:hover {
-            background: #e08e0b;
-        }
-
-        /* ----- STEAK SECTION (interactive grid) ----- */
+        /* ----- REDESIGNED STEAK SECTION (image + details below, then next dish) ----- */
         .steak-section {
             background: #0F0F0F;
             padding: 4rem 4rem;
@@ -306,102 +246,94 @@
             margin-top: 3rem;
         }
 
-        .steak-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 2rem;
-            margin-top: 3rem;
+        .steak-list {
+            display: flex;
+            flex-direction: column;
+            gap: 3rem;
+            max-width: 900px;
+            margin: 3rem auto 0;
         }
 
-        .steak-card {
+        .steak-block {
+            display: flex;
+            flex-direction: column;
             background: #1A1A1A;
-            border-radius: 30px;
-            padding: 2rem 1.5rem;
-            text-align: center;
+            border-radius: 40px;
+            padding: 2rem;
             border: 1px solid #333;
-            transition: all 0.3s ease;
-            cursor: pointer;
-            position: relative;
-            overflow: hidden;
+            transition: border 0.2s, box-shadow 0.2s;
         }
-
-        .steak-card:hover {
+        .steak-block:hover {
             border-color: #F39C12;
-            transform: translateY(-10px);
-            box-shadow: 0 20px 30px rgba(243, 156, 18, 0.2);
+            box-shadow: 0 15px 30px rgba(243,156,18,0.15);
         }
 
-        .steak-card img {
-            width: 180px;
-            height: 140px;
-            object-fit: contain;
-            transition: transform 0.4s;
-            border-radius: 16px;
+        .steak-block-img {
+            text-align: center;
+            margin-bottom: 1.5rem;
+        }
+        .steak-block-img img {
+            width: 220px;
+            height: 160px;
+            object-fit: cover;
+            border-radius: 30px;
+            border: 2px solid #F39C12;
+            transition: transform 0.3s;
+        }
+        .steak-block:hover img {
+            transform: scale(1.02);
         }
 
-        .steak-card:hover img {
-            transform: scale(1.1) rotate(2deg);
+        .steak-info {
+            text-align: left;
         }
-
-        .steak-card h3 {
+        .steak-info h3 {
             color: #F39C12;
-            font-size: 2rem;
-            margin: 1rem 0 0.5rem;
+            font-size: 2.4rem;
+            margin-bottom: 0.5rem;
         }
-
-        .steak-desc {
-            color: #aaa;
-            font-size: 0.95rem;
-            margin: 1rem 0;
+        .steak-description {
+            font-size: 1.1rem;
+            color: #ccc;
+            margin-bottom: 0.75rem;
+            line-height: 1.5;
         }
-
-        .steak-weight {
+        .steak-metadata {
+            display: flex;
+            gap: 2rem;
             font-weight: 700;
             color: #F39C12;
-            background: rgba(243, 156, 18, 0.1);
-            display: inline-block;
-            padding: 0.3rem 1rem;
-            border-radius: 50px;
+            background: rgba(243,156,18,0.08);
+            padding: 0.75rem 1.5rem;
+            border-radius: 60px;
+            width: fit-content;
+        }
+        .steak-metadata span {
+            display: flex;
+            align-items: center;
+            gap: 0.4rem;
         }
 
-        /* sizzle effect (hover) */
-        .steak-card::after {
-            content: "🔥 SIZZLE";
-            position: absolute;
-            bottom: -30px;
-            left: 0;
-            width: 100%;
-            background: #F39C12;
-            color: #0A0A0A;
-            font-weight: bold;
-            padding: 0.5rem;
-            transition: bottom 0.3s;
+        /* second block etc — pure stacking */
+        .steak-block + .steak-block {
+            margin-top: 1rem;
         }
 
-        .steak-card:hover::after {
-            bottom: 0;
-        }
-
-        /* Responsive */
-        @media (max-width: 900px) {
+        /* small responsiveness */
+        @media (max-width: 700px) {
             nav { flex-direction: column; gap: 1rem; padding: 1rem; }
             .nav-links { flex-wrap: wrap; justify-content: center; }
             .container { padding: 1rem; }
-            .carousel-item { width: 220px; height: 300px; }
-            .item-1 { transform: rotateY(0deg) translateZ(300px); }
-            .item-2 { transform: rotateY(60deg) translateZ(300px); }
-            .item-3 { transform: rotateY(120deg) translateZ(300px); }
-            .item-4 { transform: rotateY(180deg) translateZ(300px); }
-            .item-5 { transform: rotateY(240deg) translateZ(300px); }
-            .item-6 { transform: rotateY(300deg) translateZ(300px); }
+            .steak-section { padding: 2rem 1.5rem; }
+            .steak-metadata { flex-direction: column; gap: 0.5rem; }
         }
     </style>
 </head>
 <body>
 
-    <!-- Navigation -->
+    <!-- Navigation with lounge37 subtitle -->
     <nav>
-        <div class="logo">LOUNGEBAR <span>37</span></div>
+        <div class="logo">LOUNGE37 <span>burgers & steaks</span></div>
         <div class="nav-links">
             <a href="#">HOME</a>
             <a href="#">BURGERS</a>
@@ -412,110 +344,107 @@
     </nav>
 
     <main>
-        <!-- BURGER CAROUSEL SECTION (spinning table) -->
+        <!-- BURGER CAROUSEL (same vibrant 3D, with AI‑style images) -->
         <div class="container carousel-section">
             <h1 class="section-title">SPIN THE TABLE</h1>
             <p style="margin-bottom: 1rem; color: #ccc;">Drag or use arrows — click any burger for details</p>
 
             <div class="carousel-container">
                 <div class="carousel" id="burgerCarousel">
-                    <!-- Burger 1 - AI generated style -->
-                    <div class="carousel-item item-1" data-id="1">
-                        <img src="https://placekitten.com/300/200" alt="BBQ Burger" style="background: #2a2a2a; object-fit: cover;" onerror="this.src='https://via.placeholder.com/300x200/F39C12/000000?text=SMASH+BURGER';this.onerror=null;">
-                        <h3>SMASH</h3>
-                        <p>Angus + cheddar</p>
-                    </div>
-                    <!-- Burger 2 -->
-                    <div class="carousel-item item-2" data-id="2">
-                        <img src="https://placekitten.com/301/201" alt="Spicy Black" style="background: #2a2a2a; object-fit: cover;" onerror="this.src='https://via.placeholder.com/300x200/F39C12/000000?text=SPICY+BURGER';this.onerror=null;">
-                        <h3>SPICY</h3>
-                        <p>jalapeño · pepper jack</p>
-                    </div>
-                    <!-- Burger 3 -->
-                    <div class="carousel-item item-3" data-id="3">
-                        <img src="https://placekitten.com/302/202" alt="Truffle" style="background: #2a2a2a; object-fit: cover;" onerror="this.src='https://via.placeholder.com/300x200/F39C12/000000?text=TRUFFLE';this.onerror=null;">
-                        <h3>TRUFFLE</h3>
-                        <p>mushroom · aioli</p>
-                    </div>
-                    <!-- Burger 4 -->
-                    <div class="carousel-item item-4" data-id="4">
-                        <img src="https://placekitten.com/303/203" alt="Classic" style="background: #2a2a2a; object-fit: cover;" onerror="this.src='https://via.placeholder.com/300x200/F39C12/000000?text=CLASSIC';this.onerror=null;">
-                        <h3>CLASSIC</h3>
-                        <p>lettuce · tomato · onion</p>
-                    </div>
-                    <!-- Burger 5 -->
-                    <div class="carousel-item item-5" data-id="5">
-                        <img src="https://placekitten.com/304/204" alt="Double" style="background: #2a2a2a; object-fit: cover;" onerror="this.src='https://via.placeholder.com/300x200/F39C12/000000?text=DOUBLE';this.onerror=null;">
-                        <h3>DOUBLE</h3>
-                        <p>two patties · cheese</p>
-                    </div>
-                    <!-- Burger 6 -->
-                    <div class="carousel-item item-6" data-id="6">
-                        <img src="https://placekitten.com/305/205" alt="Hawaiian" style="background: #2a2a2a; object-fit: cover;" onerror="this.src='https://via.placeholder.com/300x200/F39C12/000000?text=HAWAIIAN';this.onerror=null;">
-                        <h3>HAWAIIAN</h3>
-                        <p>pineapple · bacon</p>
-                    </div>
+                    <!-- Burger 1-6 with unsplash food (fallback kittens) -->
+                    <div class="carousel-item item-1" data-id="1"><img src="https://images.unsplash.com/photo-1586190848861-99aa4a171e90?w=300&h=200&fit=crop&auto=format" alt="Smash" onerror="this.src='https://placekitten.com/300/200';"><h3>SMASH</h3><p>Angus + cheddar</p></div>
+                    <div class="carousel-item item-2" data-id="2"><img src="https://images.unsplash.com/photo-1594212699903-ec8a3eca50f5?w=300&h=200&fit=crop&auto=format" alt="Spicy" onerror="this.src='https://placekitten.com/301/201';"><h3>SPICY</h3><p>jalapeño · pepper jack</p></div>
+                    <div class="carousel-item item-3" data-id="3"><img src="https://images.unsplash.com/photo-1572802419224-296b0aeee0d9?w=300&h=200&fit=crop&auto=format" alt="Truffle" onerror="this.src='https://placekitten.com/302/202';"><h3>TRUFFLE</h3><p>mushroom · aioli</p></div>
+                    <div class="carousel-item item-4" data-id="4"><img src="https://images.unsplash.com/photo-1550317138-10000687a72b?w=300&h=200&fit=crop&auto=format" alt="Classic" onerror="this.src='https://placekitten.com/303/203';"><h3>CLASSIC</h3><p>lettuce · tomato · onion</p></div>
+                    <div class="carousel-item item-5" data-id="5"><img src="https://images.unsplash.com/photo-1553979459-d2229ba518b6?w=300&h=200&fit=crop&auto=format" alt="Double" onerror="this.src='https://placekitten.com/304/204';"><h3>DOUBLE</h3><p>two patties · cheese</p></div>
+                    <div class="carousel-item item-6" data-id="6"><img src="https://images.unsplash.com/photo-1525059696034-4967a8e1dca2?w=300&h=200&fit=crop&auto=format" alt="Hawaiian" onerror="this.src='https://placekitten.com/305/205';"><h3>HAWAIIAN</h3><p>pineapple · bacon</p></div>
                 </div>
             </div>
 
-            <!-- carousel manual controls -->
             <div class="carousel-controls">
                 <button class="ctrl-btn" id="spinLeft"><i class="fas fa-arrow-left"></i></button>
                 <button class="ctrl-btn" id="spinRight"><i class="fas fa-arrow-right"></i></button>
             </div>
         </div>
 
-        <!-- STEAK SECTION (interactive grid) with AI images -->
+        <!-- STEAK SECTION – redesigned: one block = image then details below, then next steak image + details -->
         <div class="steak-section">
-            <h2 class="section-title" style="color: #F39C12;">THE BUTCHER'S CUT</h2>
-            <div class="steak-grid" id="steakGrid">
-                <!-- Ribeye -->
-                <div class="steak-card" data-steak="ribeye">
-                    <img src="https://placekitten.com/310/210" alt="Ribeye" style="background: #2a2a2a;" onerror="this.src='https://via.placeholder.com/200x150/F39C12/000000?text=RIBEYE';this.onerror=null;">
-                    <h3>RIBEYE</h3>
-                    <p class="steak-desc">rich, buttery, intense marbling</p>
-                    <span class="steak-weight">400g · $42</span>
+            <h2 class="section-title">THE BUTCHER'S CUT</h2>
+            <div class="steak-list">
+                <!-- Steak block 1: Ribeye -->
+                <div class="steak-block" data-steak="ribeye">
+                    <div class="steak-block-img">
+                        <img src="https://images.unsplash.com/photo-1600891964092-4316c288032e?w=400&h=260&fit=crop&auto=format" alt="Ribeye steak" onerror="this.src='https://placekitten.com/400/260';">
+                    </div>
+                    <div class="steak-info">
+                        <h3>RIBEYE</h3>
+                        <p class="steak-description">Rich, buttery, with intense marbling – our 28-day aged ribeye melts on the charcoal. Served with rosemary garlic butter.</p>
+                        <div class="steak-metadata">
+                            <span><i class="fas fa-weight-hanging"></i> 400g</span>
+                            <span><i class="fas fa-tag"></i> $42</span>
+                            <span><i class="fas fa-fire"></i> charcoal grilled</span>
+                        </div>
+                    </div>
                 </div>
-                <!-- Sirloin -->
-                <div class="steak-card" data-steak="sirloin">
-                    <img src="https://placekitten.com/311/211" alt="Sirloin" style="background: #2a2a2a;" onerror="this.src='https://via.placeholder.com/200x150/F39C12/000000?text=SIRLOIN';this.onerror=null;">
-                    <h3>SIRLOIN</h3>
-                    <p class="steak-desc">lean, beefy, firm texture</p>
-                    <span class="steak-weight">350g · $38</span>
+
+                <!-- Steak block 2: Sirloin (image, then details below) -->
+                <div class="steak-block" data-steak="sirloin">
+                    <div class="steak-block-img">
+                        <img src="https://images.unsplash.com/photo-1558030006-450675393462?w=400&h=260&fit=crop&auto=format" alt="Sirloin steak" onerror="this.src='https://placekitten.com/401/261';">
+                    </div>
+                    <div class="steak-info">
+                        <h3>SIRLOIN</h3>
+                        <p class="steak-description">Lean, beefy and firm – a classic cut with deep flavour. Finished with herb butter and a side of chimichurri.</p>
+                        <div class="steak-metadata">
+                            <span><i class="fas fa-weight-hanging"></i> 350g</span>
+                            <span><i class="fas fa-tag"></i> $38</span>
+                            <span><i class="fas fa-fire"></i> grilled over oak</span>
+                        </div>
+                    </div>
                 </div>
-                <!-- Fillet -->
-                <div class="steak-card" data-steak="fillet">
-                    <img src="https://placekitten.com/312/212" alt="Fillet" style="background: #2a2a2a;" onerror="this.src='https://via.placeholder.com/200x150/F39C12/000000?text=FILLET';this.onerror=null;">
-                    <h3>FILLET</h3>
-                    <p class="steak-desc">tender, melt-in-the-mouth</p>
-                    <span class="steak-weight">300g · $48</span>
+
+                <!-- Steak block 3: Fillet (image, then details below) -->
+                <div class="steak-block" data-steak="fillet">
+                    <div class="steak-block-img">
+                        <img src="https://images.unsplash.com/photo-1546964124-0c1d4f9e8403?w=400&h=260&fit=crop&auto=format" alt="Fillet steak" onerror="this.src='https://placekitten.com/402/262';">
+                    </div>
+                    <div class="steak-info">
+                        <h3>FILLET</h3>
+                        <p class="steak-description">Tender, melt‑in‑your‑mouth. Centre‑cut beef fillet, wrapped in bacon, served with red wine jus.</p>
+                        <div class="steak-metadata">
+                            <span><i class="fas fa-weight-hanging"></i> 300g</span>
+                            <span><i class="fas fa-tag"></i> $48</span>
+                            <span><i class="fas fa-fire"></i> rare to medium</span>
+                        </div>
+                    </div>
                 </div>
-                <!-- Tomahawk -->
-                <div class="steak-card" data-steak="tomahawk">
-                    <img src="https://placekitten.com/313/213" alt="Tomahawk" style="background: #2a2a2a;" onerror="this.src='https://via.placeholder.com/200x150/F39C12/000000?text=TOMAHAWK';this.onerror=null;">
-                    <h3>TOMAHAWK</h3>
-                    <p class="steak-desc">impressive, full flavour</p>
-                    <span class="steak-weight">800g · $89</span>
+
+                <!-- Steak block 4: Tomahawk (image, then details below) -->
+                <div class="steak-block" data-steak="tomahawk">
+                    <div class="steak-block-img">
+                        <img src="https://images.unsplash.com/photo-1615937657715-bc7b4b7962c1?w=400&h=260&fit=crop&auto=format" alt="Tomahawk steak" onerror="this.src='https://placekitten.com/403/263';">
+                    </div>
+                    <div class="steak-info">
+                        <h3>TOMAHAWK</h3>
+                        <p class="steak-description">Impressive 800g bone‑in ribeye, full flavour, perfect for sharing. Seasoned with smoked salt and charcoal embers.</p>
+                        <div class="steak-metadata">
+                            <span><i class="fas fa-weight-hanging"></i> 800g</span>
+                            <span><i class="fas fa-tag"></i> $89</span>
+                            <span><i class="fas fa-fire"></i> flambéed tableside</span>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
     </main>
 
-    <!-- MODAL (popup for burger) -->
+    <!-- MODAL for burgers (same functionality) -->
     <div class="modal-overlay" id="burgerModal">
         <div class="modal-card">
-            <div class="modal-left">
-                <img id="modalImg" src="" alt="Burger">
-            </div>
+            <div class="modal-left"><img id="modalImg" src="" alt="Burger"></div>
             <div class="modal-right">
                 <h2 id="modalTitle">SMASH BURGER</h2>
-                <div class="ingredients" id="modalIngredients">
-                    <p>🥩 Angus beef patty</p>
-                    <p>🧀 Cheddar cheese</p>
-                    <p>🥬 Lettuce, tomato</p>
-                    <p>🍔 Brioche bun</p>
-                    <p>🔥 Secret sauce</p>
-                </div>
+                <div class="ingredients" id="modalIngredients"><p>🥩 Angus beef patty</p><p>🧀 Cheddar cheese</p><p>🥬 Lettuce, tomato</p><p>🍔 Brioche bun</p><p>🔥 Secret sauce</p></div>
                 <div class="price" id="modalPrice">$18.90</div>
                 <button class="close-modal" id="closeModal">Close</button>
             </div>
@@ -524,31 +453,23 @@
 
     <script>
         (function() {
-            // ----- 3D CAROUSEL MANUAL CONTROL -----
+            // Carousel manual spin
             const carousel = document.getElementById('burgerCarousel');
-            let currentRotation = 0; // in degrees
-
+            let currentRotation = 0;
             document.getElementById('spinLeft').addEventListener('click', () => {
-                currentRotation -= 60; // each step = 60deg (6 items)
-                carousel.style.animation = 'none'; // stop auto spin
+                currentRotation -= 60;
+                carousel.style.animation = 'none';
                 carousel.style.transform = `rotateY(${currentRotation}deg)`;
             });
-
             document.getElementById('spinRight').addEventListener('click', () => {
                 currentRotation += 60;
                 carousel.style.animation = 'none';
                 carousel.style.transform = `rotateY(${currentRotation}deg)`;
             });
+            carousel.addEventListener('mousedown', () => carousel.style.animationPlayState = 'paused');
+            carousel.addEventListener('mouseup', () => carousel.style.animationPlayState = 'running');
 
-            // allow drag simulation (just stop animation on mouse down)
-            carousel.addEventListener('mousedown', () => {
-                carousel.style.animationPlayState = 'paused';
-            });
-            carousel.addEventListener('mouseup', () => {
-                carousel.style.animationPlayState = 'running';
-            });
-
-            // ----- BURGER MODAL (click on carousel item) -----
+            // Modal logic
             const modal = document.getElementById('burgerModal');
             const modalImg = document.getElementById('modalImg');
             const modalTitle = document.getElementById('modalTitle');
@@ -556,82 +477,45 @@
             const modalPrice = document.getElementById('modalPrice');
             const closeBtn = document.getElementById('closeModal');
 
-            // data for each burger — using placeholder images that look like AI food, but now we use kitten fallback as "AI generated" style
             const burgerData = {
-                1: { name: 'SMASH BURGER', ingredients: ['🥩 Double angus patty', '🧀 Smoked cheddar', '🥒 Pickles', '🧅 Caramelized onions', '🍔 Brioche bun'], price: '$21.90', img: 'https://images.unsplash.com/photo-1586190848861-99aa4a171e90?w=400&h=250&fit=crop&auto=format' },
-                2: { name: 'SPICY BURGER', ingredients: ['🥩 Beef patty', '🧀 Pepper jack', '🌶️ Jalapeño', '🥑 Chipotle mayo', '🍔 Sesame bun'], price: '$19.90', img: 'https://images.unsplash.com/photo-1594212699903-ec8a3eca50f5?w=400&h=250&fit=crop&auto=format' },
-                3: { name: 'TRUFFLE BURGER', ingredients: ['🥩 Wagyu beef', '🍄 Truffle mushroom', '🧀 Provolone', '🧄 Garlic aioli', '🍔 Brioche'], price: '$24.90', img: 'https://images.unsplash.com/photo-1572802419224-296b0aeee0d9?w=400&h=250&fit=crop&auto=format' },
-                4: { name: 'CLASSIC BURGER', ingredients: ['🥩 Beef patty', '🧀 American cheese', '🥬 Lettuce', '🍅 Tomato', '🧅 Onion', '🍔 Potato bun'], price: '$16.90', img: 'https://images.unsplash.com/photo-1550317138-10000687a72b?w=400&h=250&fit=crop&auto=format' },
-                5: { name: 'DOUBLE BURGER', ingredients: ['🥩 Two beef patties', '🧀 Double cheese', '🥓 Bacon', '🍅 Tomato', '🥒 Pickles', '🍔 Brioche'], price: '$26.90', img: 'https://images.unsplash.com/photo-1553979459-d2229ba518b6?w=400&h=250&fit=crop&auto=format' },
-                6: { name: 'HAWAIIAN BURGER', ingredients: ['🥩 Beef patty', '🍍 Grilled pineapple', '🥓 Bacon', '🧀 Swiss cheese', '🍔 Sesame bun'], price: '$22.90', img: 'https://images.unsplash.com/photo-1525059696034-4967a8e1dca2?w=400&h=250&fit=crop&auto=format' }
+                1: { name: 'SMASH BURGER', ingredients: ['🥩 Double angus patty', '🧀 Smoked cheddar', '🥒 Pickles', '🧅 Caramelized onions', '🍔 Brioche bun'], price: '$21.90', img: 'https://images.unsplash.com/photo-1586190848861-99aa4a171e90?w=400&h=250&fit=crop' },
+                2: { name: 'SPICY BURGER', ingredients: ['🥩 Beef patty', '🧀 Pepper jack', '🌶️ Jalapeño', '🥑 Chipotle mayo', '🍔 Sesame bun'], price: '$19.90', img: 'https://images.unsplash.com/photo-1594212699903-ec8a3eca50f5?w=400&h=250&fit=crop' },
+                3: { name: 'TRUFFLE BURGER', ingredients: ['🥩 Wagyu beef', '🍄 Truffle mushroom', '🧀 Provolone', '🧄 Garlic aioli', '🍔 Brioche'], price: '$24.90', img: 'https://images.unsplash.com/photo-1572802419224-296b0aeee0d9?w=400&h=250&fit=crop' },
+                4: { name: 'CLASSIC BURGER', ingredients: ['🥩 Beef patty', '🧀 American cheese', '🥬 Lettuce', '🍅 Tomato', '🧅 Onion', '🍔 Potato bun'], price: '$16.90', img: 'https://images.unsplash.com/photo-1550317138-10000687a72b?w=400&h=250&fit=crop' },
+                5: { name: 'DOUBLE BURGER', ingredients: ['🥩 Two beef patties', '🧀 Double cheese', '🥓 Bacon', '🍅 Tomato', '🥒 Pickles', '🍔 Brioche'], price: '$26.90', img: 'https://images.unsplash.com/photo-1553979459-d2229ba518b6?w=400&h=250&fit=crop' },
+                6: { name: 'HAWAIIAN BURGER', ingredients: ['🥩 Beef patty', '🍍 Grilled pineapple', '🥓 Bacon', '🧀 Swiss cheese', '🍔 Sesame bun'], price: '$22.90', img: 'https://images.unsplash.com/photo-1525059696034-4967a8e1dca2?w=400&h=250&fit=crop' }
             };
 
-            // fallback if unsplash images are blocked — use placekitten as "AI" abstract
-            function setFallbackImage(imgElement, burgerId) {
-                const fallbacks = {
-                    1: 'https://placekitten.com/400/250',
-                    2: 'https://placekitten.com/401/251',
-                    3: 'https://placekitten.com/402/252',
-                    4: 'https://placekitten.com/403/253',
-                    5: 'https://placekitten.com/404/254',
-                    6: 'https://placekitten.com/405/255'
-                };
-                imgElement.src = fallbacks[burgerId] || 'https://placekitten.com/400/250';
-            }
-
-            // attach click to all carousel items
             document.querySelectorAll('.carousel-item').forEach(item => {
                 item.addEventListener('click', (e) => {
                     e.stopPropagation();
                     const id = item.dataset.id;
                     const data = burgerData[id];
                     if (data) {
-                        // try unsplash but set fallback on error
                         modalImg.src = data.img;
-                        modalImg.onerror = function() {
-                            setFallbackImage(modalImg, id);
-                        };
+                        modalImg.onerror = function() { this.src = 'https://placekitten.com/400/250'; };
                         modalTitle.textContent = data.name;
-                        let htmlStr = '';
-                        data.ingredients.forEach(ing => {
-                            htmlStr += `<p>${ing}</p>`;
-                        });
-                        modalIngredients.innerHTML = htmlStr;
+                        modalIngredients.innerHTML = data.ingredients.map(i => `<p>${i}</p>`).join('');
                         modalPrice.textContent = data.price;
                         modal.style.display = 'flex';
                     }
                 });
             });
 
-            // close modal
-            closeBtn.addEventListener('click', () => {
-                modal.style.display = 'none';
-            });
-            modal.addEventListener('click', (e) => {
-                if (e.target === modal) modal.style.display = 'none';
-            });
+            closeBtn.addEventListener('click', () => modal.style.display = 'none');
+            modal.addEventListener('click', (e) => { if (e.target === modal) modal.style.display = 'none'; });
 
-            // ----- STEAK CLICK (show details in alert, but nicer with AI style) -----
-            document.querySelectorAll('.steak-card').forEach(card => {
-                card.addEventListener('click', () => {
-                    const steakName = card.querySelector('h3').innerText;
-                    alert(`🍽️ ${steakName} — premium cut, aged 28 days. Served with rosemary butter.`);
+            // simple click on steak blocks (just for demo)
+            document.querySelectorAll('.steak-block').forEach(block => {
+                block.addEventListener('click', () => {
+                    const name = block.querySelector('h3')?.innerText || 'steak';
+                    alert(`🍽️ ${name} — add to order? (demo)`);
                 });
             });
-
-            // preload fallback images for carousel items (kittens as AI generated)
-            const carouselImgs = document.querySelectorAll('.carousel-item img');
-            carouselImgs.forEach((img, index) => {
-                img.onerror = function() {
-                    this.src = `https://placekitten.com/${300 + index}/${200 + index}`;
-                };
-            });
-
         })();
     </script>
-    <!-- small footer note -->
     <footer style="text-align: center; padding: 2rem; color: #444; border-top: 1px solid #222;">
-        <p>LOUNGEBAR 37 · FIRE GRILLED SINCE 2026 · <span style="color:#F39C12;">#TASTE THE FIRE</span></p>
+        <p>LOUNGE37 · FIRE GRILLED SINCE 2026 · <span style="color:#F39C12;">#TASTE THE FIRE</span></p>
     </footer>
 </body>
 </html>
