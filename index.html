@@ -1,0 +1,613 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Loungebar 37 · Burgers & Steaks</title>
+    <!-- Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;700&family=Roboto:wght@300;400;700&display=swap" rel="stylesheet">
+    <!-- Font Awesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background-color: #0A0A0A;
+            color: #fff;
+            font-family: 'Roboto', sans-serif;
+            overflow-x: hidden;
+        }
+
+        h1, h2, h3 {
+            font-family: 'Oswald', sans-serif;
+            font-weight: 700;
+            letter-spacing: 0.5px;
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 2rem 4rem;
+        }
+
+        /* ----- NAVIGATION ----- */
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1.5rem 4rem;
+            border-bottom: 1px solid rgba(243, 156, 18, 0.2);
+        }
+
+        .logo {
+            font-family: 'Oswald', sans-serif;
+            font-size: 2rem;
+            font-weight: 700;
+            color: #F39C12;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+
+        .logo span {
+            color: #fff;
+            font-weight: 300;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 3rem;
+        }
+
+        .nav-links a {
+            color: #fff;
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+
+        .nav-links a:hover {
+            color: #F39C12;
+        }
+
+        .order-btn {
+            background-color: #F39C12;
+            color: #0A0A0A !important;
+            padding: 0.7rem 2rem;
+            border-radius: 50px;
+            font-weight: 700;
+            transition: background 0.3s, transform 0.2s;
+        }
+
+        .order-btn:hover {
+            background-color: #e08e0b;
+            transform: scale(1.05);
+        }
+
+        /* ----- BURGER CAROUSEL SECTION ----- */
+        .carousel-section {
+            text-align: center;
+            margin: 3rem 0 5rem;
+        }
+
+        .section-title {
+            font-size: 3rem;
+            margin-bottom: 2rem;
+            color: #F39C12;
+            text-transform: uppercase;
+            position: relative;
+        }
+
+        .section-title:after {
+            content: '';
+            display: block;
+            width: 100px;
+            height: 4px;
+            background: #F39C12;
+            margin: 0.5rem auto 0;
+        }
+
+        /* The spinning carousel */
+        .carousel-container {
+            perspective: 1500px;
+            width: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 500px;
+            margin: 2rem 0;
+        }
+
+        .carousel {
+            position: relative;
+            width: 300px;
+            height: 400px;
+            transform-style: preserve-3d;
+            animation: spin 20s infinite linear;
+            cursor: grab;
+            transition: animation-play-state 0.2s;
+        }
+
+        .carousel:active {
+            cursor: grabbing;
+        }
+
+        .carousel:hover {
+            animation-play-state: paused;
+        }
+
+        .carousel-item {
+            position: absolute;
+            width: 280px;
+            height: 350px;
+            left: 10px;
+            top: 25px;
+            background: #1E1E1E;
+            border-radius: 20px;
+            border: 2px solid #F39C12;
+            box-shadow: 0 15px 30px rgba(243, 156, 18, 0.3);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 1.5rem;
+            backface-visibility: hidden;
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .carousel-item img {
+            width: 180px;
+            height: 150px;
+            object-fit: contain;
+            filter: drop-shadow(0 10px 8px rgba(0,0,0,0.7));
+        }
+
+        .carousel-item h3 {
+            color: #F39C12;
+            margin: 1rem 0 0.5rem;
+            font-size: 1.8rem;
+        }
+
+        .carousel-item p {
+            color: #ccc;
+            font-size: 1rem;
+        }
+
+        /* position each burger in 3d space */
+        .item-1 { transform: rotateY(0deg) translateZ(400px); }
+        .item-2 { transform: rotateY(60deg) translateZ(400px); }
+        .item-3 { transform: rotateY(120deg) translateZ(400px); }
+        .item-4 { transform: rotateY(180deg) translateZ(400px); }
+        .item-5 { transform: rotateY(240deg) translateZ(400px); }
+        .item-6 { transform: rotateY(300deg) translateZ(400px); }
+
+        @keyframes spin {
+            from { transform: rotateY(0deg); }
+            to { transform: rotateY(360deg); }
+        }
+
+        /* Manual control buttons */
+        .carousel-controls {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            margin: 2rem 0 1rem;
+        }
+
+        .ctrl-btn {
+            background: transparent;
+            border: 2px solid #F39C12;
+            color: #F39C12;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            font-size: 1.5rem;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+
+        .ctrl-btn:hover {
+            background: #F39C12;
+            color: #0A0A0A;
+        }
+
+        /* ----- BURGER MODAL (popup) ----- */
+        .modal-overlay {
+            display: none;
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: rgba(0,0,0,0.95);
+            z-index: 1000;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .modal-card {
+            background: #1E1E1E;
+            max-width: 800px;
+            width: 90%;
+            border-radius: 30px;
+            border: 2px solid #F39C12;
+            display: flex;
+            flex-wrap: wrap;
+            padding: 2rem;
+            gap: 2rem;
+            box-shadow: 0 20px 40px rgba(243, 156, 18, 0.4);
+        }
+
+        .modal-left {
+            flex: 1 1 250px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .modal-left img {
+            width: 100%;
+            max-width: 280px;
+            filter: drop-shadow(0 10px 10px #000);
+        }
+
+        .modal-right {
+            flex: 2 1 300px;
+        }
+
+        .modal-right h2 {
+            color: #F39C12;
+            font-size: 2.8rem;
+            line-height: 1.1;
+        }
+
+        .ingredients {
+            margin: 1.5rem 0;
+            padding: 1rem 0;
+            border-top: 1px solid #333;
+            border-bottom: 1px solid #333;
+        }
+
+        .ingredients p {
+            margin: 0.3rem 0;
+            color: #ddd;
+        }
+
+        .price {
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: #F39C12;
+            margin-bottom: 1.5rem;
+        }
+
+        .close-modal {
+            background: #F39C12;
+            border: none;
+            color: #0A0A0A;
+            font-weight: bold;
+            padding: 0.8rem 2.5rem;
+            border-radius: 50px;
+            font-size: 1.2rem;
+            cursor: pointer;
+            transition: background 0.2s;
+        }
+
+        .close-modal:hover {
+            background: #e08e0b;
+        }
+
+        /* ----- STEAK SECTION (interactive grid) ----- */
+        .steak-section {
+            background: #0F0F0F;
+            padding: 4rem 4rem;
+            border-radius: 60px 60px 0 0;
+            margin-top: 3rem;
+        }
+
+        .steak-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .steak-card {
+            background: #1A1A1A;
+            border-radius: 30px;
+            padding: 2rem 1.5rem;
+            text-align: center;
+            border: 1px solid #333;
+            transition: all 0.3s ease;
+            cursor: pointer;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .steak-card:hover {
+            border-color: #F39C12;
+            transform: translateY(-10px);
+            box-shadow: 0 20px 30px rgba(243, 156, 18, 0.2);
+        }
+
+        .steak-card img {
+            width: 180px;
+            height: 140px;
+            object-fit: contain;
+            transition: transform 0.4s;
+        }
+
+        .steak-card:hover img {
+            transform: scale(1.1) rotate(2deg);
+        }
+
+        .steak-card h3 {
+            color: #F39C12;
+            font-size: 2rem;
+            margin: 1rem 0 0.5rem;
+        }
+
+        .steak-desc {
+            color: #aaa;
+            font-size: 0.95rem;
+            margin: 1rem 0;
+        }
+
+        .steak-weight {
+            font-weight: 700;
+            color: #F39C12;
+            background: rgba(243, 156, 18, 0.1);
+            display: inline-block;
+            padding: 0.3rem 1rem;
+            border-radius: 50px;
+        }
+
+        /* sizzle effect (hover) */
+        .steak-card::after {
+            content: "🔥 SIZZLE";
+            position: absolute;
+            bottom: -30px;
+            left: 0;
+            width: 100%;
+            background: #F39C12;
+            color: #0A0A0A;
+            font-weight: bold;
+            padding: 0.5rem;
+            transition: bottom 0.3s;
+        }
+
+        .steak-card:hover::after {
+            bottom: 0;
+        }
+
+        /* Responsive */
+        @media (max-width: 900px) {
+            nav { flex-direction: column; gap: 1rem; padding: 1rem; }
+            .nav-links { flex-wrap: wrap; justify-content: center; }
+            .container { padding: 1rem; }
+            .carousel-item { width: 220px; height: 300px; }
+            .item-1 { transform: rotateY(0deg) translateZ(300px); }
+            .item-2 { transform: rotateY(60deg) translateZ(300px); }
+            .item-3 { transform: rotateY(120deg) translateZ(300px); }
+            .item-4 { transform: rotateY(180deg) translateZ(300px); }
+            .item-5 { transform: rotateY(240deg) translateZ(300px); }
+            .item-6 { transform: rotateY(300deg) translateZ(300px); }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Navigation -->
+    <nav>
+        <div class="logo">LOUNGEBAR <span>37</span></div>
+        <div class="nav-links">
+            <a href="#">HOME</a>
+            <a href="#">BURGERS</a>
+            <a href="#">STEAKS</a>
+            <a href="#">CONTACT</a>
+            <a href="#" class="order-btn">ORDER ONLINE</a>
+        </div>
+    </nav>
+
+    <main>
+        <!-- BURGER CAROUSEL SECTION (spinning table) -->
+        <div class="container carousel-section">
+            <h1 class="section-title">SPIN THE TABLE</h1>
+            <p style="margin-bottom: 1rem; color: #ccc;">Drag or use arrows — click any burger for details</p>
+
+            <div class="carousel-container">
+                <div class="carousel" id="burgerCarousel">
+                    <!-- Burger 1 -->
+                    <div class="carousel-item item-1" data-id="1">
+                        <img src="https://via.placeholder.com/300x200/F39C12/000000?text=BBQ+BURGER" alt="BBQ Burger">
+                        <h3>SMASH</h3>
+                        <p>Angus + cheddar</p>
+                    </div>
+                    <!-- Burger 2 -->
+                    <div class="carousel-item item-2" data-id="2">
+                        <img src="https://via.placeholder.com/300x200/F39C12/000000?text=SPICY+BLACK" alt="Spicy Black">
+                        <h3>SPICY</h3>
+                        <p>jalapeño · pepper jack</p>
+                    </div>
+                    <!-- Burger 3 -->
+                    <div class="carousel-item item-3" data-id="3">
+                        <img src="https://via.placeholder.com/300x200/F39C12/000000?text=TRUFFLE" alt="Truffle">
+                        <h3>TRUFFLE</h3>
+                        <p>mushroom · aioli</p>
+                    </div>
+                    <!-- Burger 4 -->
+                    <div class="carousel-item item-4" data-id="4">
+                        <img src="https://via.placeholder.com/300x200/F39C12/000000?text=CLASSIC" alt="Classic">
+                        <h3>CLASSIC</h3>
+                        <p>lettuce · tomato · onion</p>
+                    </div>
+                    <!-- Burger 5 -->
+                    <div class="carousel-item item-5" data-id="5">
+                        <img src="https://via.placeholder.com/300x200/F39C12/000000?text=DOUBLE" alt="Double">
+                        <h3>DOUBLE</h3>
+                        <p>two patties · cheese</p>
+                    </div>
+                    <!-- Burger 6 -->
+                    <div class="carousel-item item-6" data-id="6">
+                        <img src="https://via.placeholder.com/300x200/F39C12/000000?text=HAWAIIAN" alt="Hawaiian">
+                        <h3>HAWAIIAN</h3>
+                        <p>pineapple · bacon</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- carousel manual controls -->
+            <div class="carousel-controls">
+                <button class="ctrl-btn" id="spinLeft"><i class="fas fa-arrow-left"></i></button>
+                <button class="ctrl-btn" id="spinRight"><i class="fas fa-arrow-right"></i></button>
+            </div>
+        </div>
+
+        <!-- STEAK SECTION (interactive grid) -->
+        <div class="steak-section">
+            <h2 class="section-title" style="color: #F39C12;">THE BUTCHER'S CUT</h2>
+            <div class="steak-grid" id="steakGrid">
+                <!-- Ribeye -->
+                <div class="steak-card" data-steak="ribeye">
+                    <img src="https://via.placeholder.com/200x150/F39C12/000000?text=RIBEYE" alt="Ribeye">
+                    <h3>RIBEYE</h3>
+                    <p class="steak-desc">rich, buttery, intense marbling</p>
+                    <span class="steak-weight">400g · $42</span>
+                </div>
+                <!-- Sirloin -->
+                <div class="steak-card" data-steak="sirloin">
+                    <img src="https://via.placeholder.com/200x150/F39C12/000000?text=SIRLOIN" alt="Sirloin">
+                    <h3>SIRLOIN</h3>
+                    <p class="steak-desc">lean, beefy, firm texture</p>
+                    <span class="steak-weight">350g · $38</span>
+                </div>
+                <!-- Fillet -->
+                <div class="steak-card" data-steak="fillet">
+                    <img src="https://via.placeholder.com/200x150/F39C12/000000?text=FILLET" alt="Fillet">
+                    <h3>FILLET</h3>
+                    <p class="steak-desc">tender, melt-in-the-mouth</p>
+                    <span class="steak-weight">300g · $48</span>
+                </div>
+                <!-- Tomahawk -->
+                <div class="steak-card" data-steak="tomahawk">
+                    <img src="https://via.placeholder.com/200x150/F39C12/000000?text=TOMAHAWK" alt="Tomahawk">
+                    <h3>TOMAHAWK</h3>
+                    <p class="steak-desc">impressive, full flavour</p>
+                    <span class="steak-weight">800g · $89</span>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- MODAL (popup for burger) -->
+    <div class="modal-overlay" id="burgerModal">
+        <div class="modal-card">
+            <div class="modal-left">
+                <img id="modalImg" src="" alt="Burger">
+            </div>
+            <div class="modal-right">
+                <h2 id="modalTitle">SMASH BURGER</h2>
+                <div class="ingredients" id="modalIngredients">
+                    <p>🥩 Angus beef patty</p>
+                    <p>🧀 Cheddar cheese</p>
+                    <p>🥬 Lettuce, tomato</p>
+                    <p>🍔 Brioche bun</p>
+                    <p>🔥 Secret sauce</p>
+                </div>
+                <div class="price" id="modalPrice">$18.90</div>
+                <button class="close-modal" id="closeModal">Close</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        (function() {
+            // ----- 3D CAROUSEL MANUAL CONTROL -----
+            const carousel = document.getElementById('burgerCarousel');
+            let currentRotation = 0; // in degrees
+
+            document.getElementById('spinLeft').addEventListener('click', () => {
+                currentRotation -= 60; // each step = 60deg (6 items)
+                carousel.style.animation = 'none'; // stop auto spin
+                carousel.style.transform = `rotateY(${currentRotation}deg)`;
+            });
+
+            document.getElementById('spinRight').addEventListener('click', () => {
+                currentRotation += 60;
+                carousel.style.animation = 'none';
+                carousel.style.transform = `rotateY(${currentRotation}deg)`;
+            });
+
+            // allow drag simulation (just stop animation on mouse down)
+            carousel.addEventListener('mousedown', () => {
+                carousel.style.animationPlayState = 'paused';
+            });
+            carousel.addEventListener('mouseup', () => {
+                carousel.style.animationPlayState = 'running';
+            });
+            // also stop animation when any carousel item is clicked (we want modal)
+            // but we need to know which burger was clicked
+
+            // ----- BURGER MODAL (click on carousel item) -----
+            const modal = document.getElementById('burgerModal');
+            const modalImg = document.getElementById('modalImg');
+            const modalTitle = document.getElementById('modalTitle');
+            const modalIngredients = document.getElementById('modalIngredients');
+            const modalPrice = document.getElementById('modalPrice');
+            const closeBtn = document.getElementById('closeModal');
+
+            // data for each burger
+            const burgerData = {
+                1: { name: 'SMASH BURGER', ingredients: ['🥩 Double angus patty', '🧀 Smoked cheddar', '🥒 Pickles', '🧅 Caramelized onions', '🍔 Brioche bun'], price: '$21.90', img: 'https://via.placeholder.com/400x250/F39C12/000000?text=SMASH' },
+                2: { name: 'SPICY BURGER', ingredients: ['🥩 Beef patty', '🧀 Pepper jack', '🌶️ Jalapeño', '🥑 Chipotle mayo', '🍔 Sesame bun'], price: '$19.90', img: 'https://via.placeholder.com/400x250/F39C12/000000?text=SPICY' },
+                3: { name: 'TRUFFLE BURGER', ingredients: ['🥩 Wagyu beef', '🍄 Truffle mushroom', '🧀 Provolone', '🧄 Garlic aioli', '🍔 Brioche'], price: '$24.90', img: 'https://via.placeholder.com/400x250/F39C12/000000?text=TRUFFLE' },
+                4: { name: 'CLASSIC BURGER', ingredients: ['🥩 Beef patty', '🧀 American cheese', '🥬 Lettuce', '🍅 Tomato', '🧅 Onion', '🍔 Potato bun'], price: '$16.90', img: 'https://via.placeholder.com/400x250/F39C12/000000?text=CLASSIC' },
+                5: { name: 'DOUBLE BURGER', ingredients: ['🥩 Two beef patties', '🧀 Double cheese', '🥓 Bacon', '🍅 Tomato', '🥒 Pickles', '🍔 Brioche'], price: '$26.90', img: 'https://via.placeholder.com/400x250/F39C12/000000?text=DOUBLE' },
+                6: { name: 'HAWAIIAN BURGER', ingredients: ['🥩 Beef patty', '🍍 Grilled pineapple', '🥓 Bacon', '🧀 Swiss cheese', '🍔 Sesame bun'], price: '$22.90', img: 'https://via.placeholder.com/400x250/F39C12/000000?text=HAWAIIAN' }
+            };
+
+            // attach click to all carousel items
+            document.querySelectorAll('.carousel-item').forEach(item => {
+                item.addEventListener('click', (e) => {
+                    e.stopPropagation();
+                    const id = item.dataset.id;
+                    const data = burgerData[id];
+                    if (data) {
+                        modalImg.src = data.img;
+                        modalTitle.textContent = data.name;
+                        // build ingredient list
+                        let htmlStr = '';
+                        data.ingredients.forEach(ing => {
+                            htmlStr += `<p>${ing}</p>`;
+                        });
+                        modalIngredients.innerHTML = htmlStr;
+                        modalPrice.textContent = data.price;
+                        modal.style.display = 'flex';
+                    }
+                });
+            });
+
+            // close modal
+            closeBtn.addEventListener('click', () => {
+                modal.style.display = 'none';
+            });
+            modal.addEventListener('click', (e) => {
+                if (e.target === modal) modal.style.display = 'none';
+            });
+
+            // ----- STEAK CLICK (show details in alert for prototype, but we can expand) -----
+            document.querySelectorAll('.steak-card').forEach(card => {
+                card.addEventListener('click', () => {
+                    const steak = card.dataset.steak;
+                    // just simulate a mini modal: we'll create a simple alert-like but nicer using the existing modal? For simplicity, open a quick custom
+                    alert(`🍽️ ${card.querySelector('h3').innerText} — premium cut, aged 28 days.`);
+                });
+            });
+
+        })();
+    </script>
+    <!-- small footer note -->
+    <footer style="text-align: center; padding: 2rem; color: #444; border-top: 1px solid #222;">
+        <p>LOUNGEBAR 37 · FIRE GRILLED SINCE 2026 · <span style="color:#F39C12;">#TASTE THE FIRE</span></p>
+    </footer>
+</body>
+</html>
